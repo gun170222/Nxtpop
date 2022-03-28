@@ -1,0 +1,84 @@
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Posts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style type="text/css">
+    <style>
+    </style>
+    </style>
+
+</head>
+{% load static  %}
+<body >
+    <div class="container-fluid" style="background-color:black;">
+          <div class="row" style="padding-top:100px">
+            <div class="col-md-1 col-xs-1 col-sm-1"></div>
+            <div class="col-md-10 col-xs-10 col-sm-10 ">
+                <img src="{% static 'media/logo.png' %}"/>
+                <br />
+                <h6 style="text-align:center;">
+                    <font color="white" style="font-size:25px;">
+                        <br />
+                        NXTPOP Launchpad Submission Form:
+                    </font>
+                    <font color="white" style="font-size:23px;">
+                        <br />
+                        <br />
+                        NXTPOP is constantly looking to onboard high end, sparkling, 
+                        <br />
+                        artistics design to be dropped on Solana via our Launchpad.
+                        <br />
+                        <br />
+                        Please fill in the form below to apply (*required):
+                        <br />
+                        <br />
+                    </font>
+                </h6>
+            </div>
+            <div class="col-md-1 col-xs-1 col-sm-1">
+            </div>
+        </div>
+        <div class="row" style="padding-bottom:100px">
+            <div class="col-md-1 col-xs-1 col-sm-1"></div>
+            <div class="col-md-10 col-xs-10 col-sm-10">
+                <form method="post"  enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    {% for hidden_field in form.hidden_fields %}
+                    {{ hidden_field }}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <font color="white" style="font-size:20px;">{{ field.label_tag }}</font>
+                        {% render_field field class="form-control" %}
+                        {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    
+                    <button type="submit" class="btn btn-primary">Send!</button>
+                    
+                </form>
+                <br>
+            </div>
+            <div class="col-md-1 col-xs-1 col-sm-1"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
